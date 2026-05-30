@@ -9,7 +9,7 @@ import { Task22 } from './pages/Task22/Task22';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/math-training">
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
