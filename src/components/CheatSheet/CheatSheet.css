@@ -1,0 +1,136 @@
+.cheatsheet-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #f59e0b, #e85d04);
+  color: #0f0f1a;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  z-index: 200;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cheatsheet-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(245, 158, 11, 0.4);
+}
+
+.cheatsheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.cheatsheet-modal {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s ease;
+}
+
+.cheatsheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #2a2a4a;
+}
+
+.cheatsheet-header h3 {
+  font-size: 18px;
+  color: #f59e0b;
+  margin: 0;
+}
+
+.cheatsheet-close {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.cheatsheet-close:hover {
+  color: #e0e0e0;
+}
+
+.cheatsheet-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 12px 20px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.cheatsheet-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.cheatsheet-tab {
+  padding: 6px 14px;
+  border: 1px solid #2a2a4a;
+  border-radius: 6px;
+  background: transparent;
+  color: #a0a0b8;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.cheatsheet-tab:hover {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.cheatsheet-tab.active {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: #f59e0b;
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.cheatsheet-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #c0c0d0;
+}
+
+.cheatsheet-body strong {
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .cheatsheet-toggle {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .cheatsheet-modal {
+    max-height: 90vh;
+  }
+}

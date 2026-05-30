@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { CheatSheet } from '../CheatSheet/CheatSheet';
 import './Layout.css';
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -37,6 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <footer className="footer">
         <p>Тренажёр для подготовки к ОГЭ по математике</p>
       </footer>
+      <CheatSheet />
     </div>
   );
 }

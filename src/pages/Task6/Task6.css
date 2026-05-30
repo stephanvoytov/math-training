@@ -48,6 +48,97 @@
   text-decoration: underline;
 }
 
+/* Reuse practice-setup styles from Practice.css */
+.practice-setup {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.setup-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setup-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.setup-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.setup-btn {
+  padding: 10px 24px;
+  border: 2px solid #2a2a4a;
+  border-radius: 10px;
+  background: transparent;
+  color: #a0a0b8;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.setup-btn:hover {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.setup-btn.active {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.setup-checkboxes {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.setup-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #c0c0d0;
+  cursor: pointer;
+}
+
+.setup-checkbox input {
+  accent-color: #f59e0b;
+}
+
+.practice-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.auto-advance-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.auto-advance-label input {
+  accent-color: #f59e0b;
+}
+
 @media (max-width: 480px) {
   .task6-header {
     flex-direction: column;

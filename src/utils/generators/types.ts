@@ -4,4 +4,7 @@ export interface Example {
   question: string;
   answer: number;
   theoryKey: string;
+  solution?: string;
+  commonMistake?: string;
+  subtype?: string;
 }

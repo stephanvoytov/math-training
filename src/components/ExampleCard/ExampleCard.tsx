@@ -8,9 +8,10 @@ interface Props {
   selectedAnswer: number | null;
   onAnswer: (answer: number) => void;
   showResult: boolean;
+  streak?: number;
 }
 
-export const ExampleCard = memo(function ExampleCard({ example, selectedAnswer, onAnswer, showResult }: Props) {
+export const ExampleCard = memo(function ExampleCard({ example, selectedAnswer, onAnswer, showResult, streak }: Props) {
   const [inputValue, setInputValue] = useState('');
   const [inputError, setInputError] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,7 +54,12 @@ export const ExampleCard = memo(function ExampleCard({ example, selectedAnswer, 
 
   return (
     <div className="example-card">
-      <div className="example-topic">{example.topic}</div>
+      <div className="example-topic">
+        {example.topic}
+        {streak !== undefined && streak > 1 && (
+          <span className="streak-badge">🔥 {streak} подряд</span>
+        )}
+      </div>
       <div
         className="example-question"
         dangerouslySetInnerHTML={{ __html: example.question }}
@@ -87,6 +93,12 @@ export const ExampleCard = memo(function ExampleCard({ example, selectedAnswer, 
             ? '✓ Верно!'
             : `✗ Ошибка. Правильный ответ: ${example.answer}`}
         </div>
+      )}
+      {showResult && !isCorrect && example.solution && (
+        <div className="example-solution" dangerouslySetInnerHTML={{ __html: example.solution }} />
+      )}
+      {showResult && !isCorrect && example.commonMistake && (
+        <div className="example-mistake">{example.commonMistake}</div>
       )}
       <Link to={`/docs#${example.theoryKey}`} className="theory-link">
         📖 Теория по теме

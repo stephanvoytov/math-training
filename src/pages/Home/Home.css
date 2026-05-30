@@ -32,6 +32,50 @@
   margin-bottom: 40px;
 }
 
+.recent-sessions {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+
+.recent-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin: 0 0 12px;
+}
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.recent-topic {
+  color: #a0a0b8;
+  min-width: 140px;
+}
+
+.recent-score {
+  font-weight: 700;
+  min-width: 60px;
+}
+
+.recent-date {
+  color: #6b7280;
+  font-size: 12px;
+  margin-left: auto;
+}
+
 .topic-card {
   background: #1a1a2e;
   border: 1px solid #2a2a4a;
@@ -115,6 +159,23 @@
 
   .hero p {
     font-size: 15px;
+  }
+
+  .recent-sessions {
+    padding: 14px 16px;
+  }
+
+  .recent-item {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .recent-topic {
+    min-width: auto;
+  }
+
+  .recent-date {
+    margin-left: 0;
   }
 
   .topics-grid {
