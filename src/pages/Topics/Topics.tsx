@@ -3,7 +3,7 @@ import './Topics.css';
 
 const topics = [
   { key: 'addsub', title: 'Сложение и вычитание', desc: 'Устный счёт', icon: '➕', color: '#10b981' },
-  { key: 'muldiv', title: 'Умножение и деление', desc: 'Таблица умножения', icon: '✖️', color: '#3b82f6' },
+  { key: 'muldiv', title: 'Дроби и десятичные числа', desc: 'Действия с дробями и десятичными', icon: '✖️', color: '#3b82f6' },
   { key: 'powers', title: 'Степени', desc: 'Свойства степеней', icon: '🔢', color: '#8b5cf6' },
 ];
 
