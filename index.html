@@ -5,7 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/math-training/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Математика ОГЭ — Тренажёр</title>
-    <script type="module" crossorigin src="/math-training/assets/index-Dq4PfngE.js"></script>
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.pathname + location.search) {
+          var base = '/math-training';
+          var target = base + redirect;
+          if (location.pathname !== target) {
+            history.replaceState(null, '', target);
+          }
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/math-training/assets/index-D0sBQUSn.js"></script>
     <link rel="stylesheet" crossorigin href="/math-training/assets/index-Cu4QgwzD.css">
   </head>
   <body>
