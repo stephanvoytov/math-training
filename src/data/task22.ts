@@ -119,7 +119,7 @@ export const task22Examples: Task22Example[] = [
     id: 'piecewise-1',
     title: 'Кусочно-заданная функция',
     functionDesc: 'Постройте график функции y = { x²-6x+10 при x ≥ 1; x+2 при x < 1 } и определите, при каких значениях m прямая y = m имеет с графиком ровно две общие точки.',
-    functionHtml: 'y = { x²−6x+10, x ≥ 1; x+2, x < 1 }',
+    functionHtml: 'y = { x²−6x+10, x ≥ 1;<br/> x+2, x < 1 }',
     steps: [
       {
         question: 'Шаг 1: Какая ветка соответствует левой части графика (x < 1)?',

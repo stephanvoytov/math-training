@@ -103,7 +103,11 @@ export function Task22Theory() {
       <div className="interactive-demo">
         <div className="demo-header">
           <h4 className="demo-title">5. Кусочно-заданные функции</h4>
-          <div className="demo-formula">{piecewiseExamples[pieceIdx].desc}</div>
+          <div className="demo-formula">
+            {piecewiseExamples[pieceIdx].desc.split('; ').map((part, i) => (
+              <span key={i}>{i > 0 && <br/>}{i === 0 ? part + ';' : part}</span>
+            ))}
+          </div>
         </div>
         <div className="demo-body" style={{ flexDirection: 'column', alignItems: 'center' }}>
           <div className="demo-piece-tabs">
@@ -171,7 +175,7 @@ export function Task22Theory() {
 
       <div className="theory-example">
         <h4>Пример 2: Кусочно-заданная функция</h4>
-        <p className="theory-p"><strong>Задача:</strong> Постройте график y = {'{'} x²−6x+10 при x ≥ 1; x+2 при x &lt; 1 {'}'} и определите, при каких m прямая y = m имеет ровно две общие точки.</p>
+        <p className="theory-p"><strong>Задача:</strong> Постройте график y = {'{'} x²−6x+10 при x ≥ 1;<br/> x+2 при x &lt; 1 {'}'} и определите, при каких m прямая y = m имеет ровно две общие точки.</p>
         <p className="theory-p"><strong>Решение:</strong></p>
         <ol className="theory-ol">
           <li>При x &lt; 1: прямая y = x + 2.</li>
