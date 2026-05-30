@@ -62,6 +62,8 @@ export function Task22Theory() {
           return `Вершина: (${x0.toFixed(1)}; ${y0.toFixed(1)}). Ветви: ${p.a > 0 ? 'вверх ↑' : 'вниз ↓'}.`;
         }}
         xRange={[-6, 6]}
+        yRange={[-8, 12]}
+        height={470}
       />
 
       <InteractiveDemo
