@@ -136,6 +136,10 @@ export const GraphViewer = memo(function GraphViewer({
       const sx = toScreenX(p.x);
       const sy = toScreenY(p.y);
       if (sx < padding.left || sx > width - padding.right) continue;
+      if (sy < padding.top - plotH || sy > padding.top + 2 * plotH) {
+        inGap = true;
+        continue;
+      }
       if (inGap) {
         parts.push(`M${sx},${sy}`);
         inGap = false;
