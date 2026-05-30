@@ -30,6 +30,13 @@ const topics = [
     icon: '📝',
     path: '/task6',
   },
+  {
+    key: 'task22',
+    title: '22 задание ОГЭ',
+    desc: 'Построение графиков функций и определение точек пересечения',
+    icon: '📈',
+    path: '/task22',
+  },
 ];
 
 export function Home() {
@@ -57,6 +64,9 @@ export function Home() {
         </Link>
         <Link to="/task6" className="quick-link primary">
           🎯 Тренировка 6 задания
+        </Link>
+        <Link to="/task22" className="quick-link">
+          📈 22 задание
         </Link>
       </div>
     </div>
