@@ -100,6 +100,9 @@ export function Home() {
         <Link to="/task6" className="quick-link primary">
           🎯 Тренировка 6 задания
         </Link>
+        <Link to="/docs#task20" className="quick-link">
+          📝 20 задание — Уравнения
+        </Link>
         <Link to="/task22" className="quick-link">
           📈 22 задание
         </Link>
