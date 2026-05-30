@@ -56,9 +56,10 @@ export function Task22Theory() {
           { key: 'c', label: 'c', min: -5, max: 5, step: 0.1, default: 0 },
         ]}
         info={(p) => {
+          if (p.a === 0) return 'a = 0 — это не парабола, а прямая линия';
           const x0 = -p.b / (2 * p.a);
           const y0 = p.a * x0 * x0 + p.b * x0 + p.c;
-          return `Вершина: (${x0.toFixed(1)}; ${y0.toFixed(1)}). Ветви: ${p.a > 0 ? 'вверх ↑' : 'вниз ↓'}. ${p.a === 0 ? 'Это не парабола (a=0)!' : ''}`;
+          return `Вершина: (${x0.toFixed(1)}; ${y0.toFixed(1)}). Ветви: ${p.a > 0 ? 'вверх ↑' : 'вниз ↓'}.`;
         }}
         xRange={[-6, 6]}
       />

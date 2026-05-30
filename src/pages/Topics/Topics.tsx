@@ -15,7 +15,7 @@ export function Topics() {
       <div className="topics-list">
         {topics.map((t) => (
           <Link to={`/practice/${t.key}`} key={t.key} className="topics-item" style={{ borderLeftColor: t.color }}>
-            <div className="topics-item-icon">{t.icon}</div>
+            <div className="topics-item-icon"><span aria-hidden="true">{t.icon}</span></div>
             <div className="topics-item-body">
               <h3>{t.title}</h3>
               <p>{t.desc}</p>

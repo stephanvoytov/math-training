@@ -99,7 +99,7 @@ export function Practice() {
 
       <div className="practice-actions">
         {showResult && currentIdx < examples.length - 1 && (
-          <button className="btn-primary" onClick={next}>
+          <button type="button" className="btn-primary" onClick={next}>
             Следующий пример →
           </button>
         )}
@@ -107,7 +107,7 @@ export function Practice() {
           <div className="practice-done">
             <h2>Тренировка завершена!</h2>
             <p>Правильных ответов: {correct} из {total}</p>
-            <button className="btn-primary" onClick={generate}>
+            <button type="button" className="btn-primary" onClick={generate}>
               Начать заново
             </button>
           </div>

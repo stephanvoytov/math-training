@@ -20,7 +20,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <span className="logo-icon">∑</span>
             <span className="logo-text">Математика ОГЭ</span>
           </Link>
-          <nav className="nav">
+          <nav className="nav" aria-label="Основная навигация">
             {navItems.map((item) => (
               <Link
                 key={item.to}

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { Step } from '../../data/task22';
 import { GraphViewer } from '../GraphViewer/GraphViewer';
 import './StepCard.css';
@@ -10,7 +11,7 @@ interface Props {
   showResult: boolean;
 }
 
-export function StepCard({ step, stepIndex, selected, onSelect, showResult }: Props) {
+export const StepCard = memo(function StepCard({ step, stepIndex, selected, onSelect, showResult }: Props) {
   const isCorrect = selected === step.correctIndex;
 
   return (
@@ -33,7 +34,10 @@ export function StepCard({ step, stepIndex, selected, onSelect, showResult }: Pr
             <div
               key={i}
               className={cls}
+              role="button"
+              tabIndex={0}
               onClick={() => !showResult && onSelect(i)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); !showResult && onSelect(i); } }}
             >
               <div className="step-option-label">{String.fromCharCode(65 + i)})</div>
               <div className="step-option-body">
@@ -59,4 +63,4 @@ export function StepCard({ step, stepIndex, selected, onSelect, showResult }: Pr
       )}
     </div>
   );
-}
+});

@@ -1,4 +1,5 @@
 import { randInt } from '../mathUtils';
+import { nextId } from './counter';
 import type { Example } from './types';
 
 const difficulties = [
@@ -14,13 +15,14 @@ export function generateAddSubExamples(count: number = 10): Example[] {
     const a = randInt(d.min, d.max);
     const b = randInt(d.min, d.max);
     const op = Math.random() < 0.5 ? '+' : '−';
-    const answer = op === '+' ? a + b : a - b;
+    const rawAnswer = op === '+' ? a + b : a - b;
+    const answer = Math.round(rawAnswer * 1000) / 1000;
 
     examples.push({
-      id: `addsub-${Date.now()}-${i}`,
+      id: `addsub-${nextId()}`,
       topic: 'Сложение и вычитание',
       question: `${a} ${op} ${b}`,
-      answer,
+      answer: answer,
       theoryKey: 'addsub',
     });
   }

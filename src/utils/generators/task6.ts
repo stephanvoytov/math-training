@@ -1,4 +1,5 @@
 import { randInt } from '../mathUtils';
+import { nextId } from './counter';
 import type { Example } from './types';
 
 function fmtPower(base: number, exp: number): string {
@@ -67,7 +68,7 @@ export function generateTask6Examples(count: number = 10): Example[] {
     answer = Math.round(answer * 1000) / 1000;
 
     examples.push({
-      id: `task6-${Date.now()}-${i}`,
+      id: `task6-${nextId()}`,
       topic: '6 задание ОГЭ',
       question,
       answer,

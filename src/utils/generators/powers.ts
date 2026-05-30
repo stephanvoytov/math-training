@@ -1,4 +1,5 @@
 import { randInt } from '../mathUtils';
+import { nextId } from './counter';
 import type { Example } from './types';
 
 function powerStr(base: number, exp: number): string {
@@ -51,10 +52,10 @@ export function generatePowersExamples(count: number = 10): Example[] {
     }
 
     examples.push({
-      id: `pow-${Date.now()}-${i}`,
+      id: `pow-${nextId()}`,
       topic: 'Степени',
       question,
-      answer,
+      answer: Math.round(answer * 1000) / 1000,
       theoryKey: 'powers',
     });
   }

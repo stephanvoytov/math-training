@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import './Home.css';
 
 const topics = [
@@ -44,10 +43,10 @@ export function Home() {
       <div className="topics-grid">
         {topics.map((topic) => (
           <Link to={topic.path} key={topic.key} className="topic-card">
-            <div className="topic-icon">{topic.icon}</div>
+            <div className="topic-icon"><span aria-hidden="true">{topic.icon}</span></div>
             <h2 className="topic-title">{topic.title}</h2>
             <p className="topic-desc">{topic.desc}</p>
-            <ProgressBar current={0} total={0} />
+            {/*<ProgressBar current={0} total={0} />*/}
           </Link>
         ))}
       </div>

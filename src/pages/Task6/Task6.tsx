@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ExampleCard } from '../../components/ExampleCard/ExampleCard';
 import { ProgressBar } from '../../components/ProgressBar/ProgressBar';
 import { generateTask6Examples } from '../../utils/generators/task6';
@@ -64,7 +65,7 @@ export function Task6() {
 
       <div className="task6-tip">
         <strong>💡 Совет:</strong> Вспомните свойства степеней и правила работы с корнями.
-        <a href="/docs#task6" className="task6-tip-link">📖 Открыть теорию</a>
+        <Link to="/docs#task6" className="task6-tip-link">📖 Открыть теорию</Link>
       </div>
 
       <ExampleCard
@@ -76,7 +77,7 @@ export function Task6() {
 
       <div className="practice-actions">
         {showResult && currentIdx < examples.length - 1 && (
-          <button className="btn-primary" onClick={next}>
+          <button type="button" className="btn-primary" onClick={next}>
             Следующий пример →
           </button>
         )}
@@ -84,7 +85,7 @@ export function Task6() {
           <div className="practice-done">
             <h2>Тренировка завершена!</h2>
             <p>Правильных ответов: {correct} из {total}</p>
-            <button className="btn-primary" onClick={generate}>
+            <button type="button" className="btn-primary" onClick={generate}>
               Начать заново
             </button>
           </div>

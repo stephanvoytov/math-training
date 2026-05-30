@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import type { Example } from '../../utils/generators/types';
 import './ExampleCard.css';
@@ -10,12 +10,14 @@ interface Props {
   showResult: boolean;
 }
 
-export function ExampleCard({ example, selectedAnswer, onAnswer, showResult }: Props) {
+export const ExampleCard = memo(function ExampleCard({ example, selectedAnswer, onAnswer, showResult }: Props) {
   const [inputValue, setInputValue] = useState('');
+  const [inputError, setInputError] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setInputValue('');
+    setInputError('');
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -32,8 +34,16 @@ export function ExampleCard({ example, selectedAnswer, onAnswer, showResult }: P
   const handleCheck = () => {
     if (showResult) return;
     const trimmed = inputValue.trim().replace(',', '.');
+    if (!trimmed) {
+      setInputError('Введите ответ');
+      return;
+    }
     const parsed = parseFloat(trimmed);
-    if (isNaN(parsed)) return;
+    if (isNaN(parsed)) {
+      setInputError('Введите число');
+      return;
+    }
+    setInputError('');
     onAnswer(Math.round(parsed * 1000) / 1000);
   };
 
@@ -48,24 +58,29 @@ export function ExampleCard({ example, selectedAnswer, onAnswer, showResult }: P
         className="example-question"
         dangerouslySetInnerHTML={{ __html: example.question }}
       />
-      <div className="example-input-area">
+      <div className="example-input-area" aria-live="polite">
         <input
           ref={inputRef}
           type="text"
           className="answer-input"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => { setInputValue(e.target.value); setInputError(''); }}
           onKeyDown={handleKeyDown}
           disabled={showResult}
           placeholder="Введите ответ..."
           autoComplete="off"
+          aria-describedby={inputError ? 'input-error' : undefined}
+          aria-invalid={!!inputError}
         />
         {!showResult && (
-          <button className="check-btn" onClick={handleCheck}>
+          <button type="button" className="check-btn" onClick={handleCheck}>
             Проверить
           </button>
         )}
       </div>
+      {inputError && !showResult && (
+        <div id="input-error" className="input-error">{inputError}</div>
+      )}
       {showResult && (
         <div className={`example-result ${isCorrect ? 'correct' : 'wrong'}`}>
           {isCorrect
@@ -78,4 +93,4 @@ export function ExampleCard({ example, selectedAnswer, onAnswer, showResult }: P
       </Link>
     </div>
   );
-}
+});

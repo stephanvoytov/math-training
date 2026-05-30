@@ -1,4 +1,5 @@
 import { randInt } from '../mathUtils';
+import { nextId } from './counter';
 import type { Example } from './types';
 
 export function generateMulDivExamples(count: number = 10): Example[] {
@@ -19,10 +20,10 @@ export function generateMulDivExamples(count: number = 10): Example[] {
     }
 
     examples.push({
-      id: `muldiv-${Date.now()}-${i}`,
+      id: `muldiv-${nextId()}`,
       topic: 'Умножение и деление',
       question: `${a} ${op} ${b}`,
-      answer,
+      answer: Math.round(answer * 1000) / 1000,
       theoryKey: 'muldiv',
     });
   }

@@ -38,18 +38,18 @@ export function InteractiveDemo({
   height = 320,
   holes,
 }: Props) {
-  const initialParams: Record<string, number> = {};
-  for (const p of paramDefs) {
-    initialParams[p.key] = p.default;
-  }
-  const [paramValues, setParamValues] = useState<Record<string, number>>(initialParams);
+  const [paramValues, setParamValues] = useState<Record<string, number>>(() => {
+    const init: Record<string, number> = {};
+    for (const p of paramDefs) {
+      init[p.key] = p.default;
+    }
+    return init;
+  });
 
   const mainFn = fn(paramValues);
 
   const extras = additionalFns?.(paramValues);
   const holePts = holes?.(paramValues);
-
-  const paramArr = Object.entries(paramValues);
 
   return (
     <div className="interactive-demo">
@@ -80,9 +80,12 @@ export function InteractiveDemo({
                 max={p.max}
                 step={p.step}
                 value={paramValues[p.key]}
-                onChange={(e) =>
-                  setParamValues((prev) => ({ ...prev, [p.key]: parseFloat(e.target.value) }))
-                }
+                onChange={(e) => {
+                  const val = parseFloat(e.target.value);
+                  if (!isNaN(val)) {
+                    setParamValues((prev) => ({ ...prev, [p.key]: val }));
+                  }
+                }}
               />
               <span className="demo-slider-value">{paramValues[p.key].toFixed(1)}</span>
             </div>
@@ -90,7 +93,7 @@ export function InteractiveDemo({
           {info && (
             <div className="demo-info">{info(paramValues)}</div>
           )}
-          {paramArr.length > 0 && (
+          {paramDefs.length > 0 && (
             <button
               className="demo-reset"
               onClick={() => {

@@ -60,7 +60,7 @@ export function Task22() {
 
         <div className="task22-examples">
           {task22Examples.map((ex) => (
-            <div key={ex.id} className="task22-example-card" onClick={() => pickExample(ex)}>
+            <div key={ex.id} className="task22-example-card" role="button" tabIndex={0} onClick={() => pickExample(ex)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickExample(ex); } }}>
               <div className="task22-example-header">
                 <span className="task22-badge">{ex.title}</span>
               </div>
@@ -85,7 +85,7 @@ export function Task22() {
   return (
     <div className="task22-page">
       <div className="task22-progress-header">
-        <button className="task22-back" onClick={handleReset}>← Все примеры</button>
+        <button type="button" className="task22-back" onClick={handleReset}>← Все примеры</button>
         <div className="task22-progress-dots">
           {selectedExample.steps.map((_, i) => (
             <span
@@ -115,7 +115,7 @@ export function Task22() {
 
       <div className="task22-nav">
         {showResult && !isLast && (
-          <button className="btn-primary" onClick={handleNext}>
+          <button type="button" className="btn-primary" onClick={handleNext}>
             Следующий шаг →
           </button>
         )}
@@ -129,7 +129,7 @@ export function Task22() {
               На экзамене за это задание можно получить 2 балла. 
               Главное — аккуратно упростить выражение и правильно построить график.
             </p>
-            <button className="btn-primary" onClick={handleReset}>
+            <button type="button" className="btn-primary" onClick={handleReset}>
               ← К списку примеров
             </button>
           </div>

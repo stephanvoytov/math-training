@@ -16,7 +16,7 @@ export function Docs() {
         el.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  }, [location.hash]);
+  }, [location.hash, location.key]);
 
   return (
     <div className="docs-page" ref={contentRef}>

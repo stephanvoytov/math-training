@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import './GraphViewer.css';
 
 interface Props {
@@ -33,7 +34,7 @@ function evalPoints(
   return pts;
 }
 
-export function GraphViewer({
+export const GraphViewer = memo(function GraphViewer({
   fn,
   fns,
   xRange = [-5, 5],
@@ -45,9 +46,34 @@ export function GraphViewer({
   holes,
   title,
 }: Props) {
+  const noFn = !fn && (!fns || fns.length === 0);
+  const graphLabel = title || (noFn ? '' : 'График функции');
   const padding = { top: 20, right: 20, bottom: 30, left: 40 };
   const plotW = width - padding.left - padding.right;
   const plotH = height - padding.top - padding.bottom;
+
+  if (noFn) {
+    return (
+      <div className="graph-viewer">
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={title || 'График'}>
+          <rect width={width} height={height} fill="#0f0f1a" rx={8} />
+          <text x={width / 2} y={height / 2} textAnchor="middle" fill="#6b7280" fontSize={14}>Нет данных для отображения</text>
+        </svg>
+      </div>
+    );
+  }
+
+  const rangeX = xRange[1] - xRange[0];
+  if (rangeX === 0) {
+    return (
+      <div className="graph-viewer">
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={graphLabel}>
+          <rect width={width} height={height} fill="#0f0f1a" rx={8} />
+          <text x={width / 2} y={height / 2} textAnchor="middle" fill="#6b7280" fontSize={14}>Некорректный диапазон</text>
+        </svg>
+      </div>
+    );
+  }
 
   const allPts: { x: number; y: number }[] = [];
   if (fn) {
@@ -75,19 +101,31 @@ export function GraphViewer({
     yMax += pad;
   }
 
-  const toScreenX = (x: number) =>
-    padding.left + ((x - xRange[0]) / (xRange[1] - xRange[0])) * plotW;
-  const toScreenY = (y: number) =>
-    padding.top + ((yMax - y) / (yMax - yMin)) * plotH;
+  const rangeY = yMax - yMin;
+  if (rangeY === 0) {
+    return (
+      <div className="graph-viewer">
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={graphLabel}>
+          <rect width={width} height={height} fill="#0f0f1a" rx={8} />
+          <text x={width / 2} y={height / 2} textAnchor="middle" fill="#6b7280" fontSize={14}>Некорректный диапазон</text>
+        </svg>
+      </div>
+    );
+  }
 
-  const gridXStep = Math.pow(10, Math.floor(Math.log10(xRange[1] - xRange[0])) - 1);
-  const gridYStep = Math.pow(10, Math.floor(Math.log10(yMax - yMin)) - 1);
+  const toScreenX = (x: number) =>
+    padding.left + ((x - xRange[0]) / rangeX) * plotW;
+  const toScreenY = (y: number) =>
+    padding.top + ((yMax - y) / rangeY) * plotH;
+
+  const gridXStep = Math.max(Math.pow(10, Math.floor(Math.log10(rangeX)) - 1), 0.01);
+  const gridYStep = Math.max(Math.pow(10, Math.floor(Math.log10(rangeY)) - 1), 0.01);
 
   const x0 = toScreenX(0);
   const y0 = toScreenY(0);
 
-  function renderPath(fn: (x: number) => number, color: string) {
-    const pts = evalPoints(fn, xRange[0], xRange[1], 400);
+  function renderPath(f: (x: number) => number, color: string) {
+    const pts = evalPoints(f, xRange[0], xRange[1], 400);
     const parts: string[] = [];
     let inGap = true;
     for (const p of pts) {
@@ -97,7 +135,6 @@ export function GraphViewer({
       }
       const sx = toScreenX(p.x);
       const sy = toScreenY(p.y);
-      if (sx < padding.left || sx > width - padding.right) continue;
       if (inGap) {
         parts.push(`M${sx},${sy}`);
         inGap = false;
@@ -111,14 +148,13 @@ export function GraphViewer({
   return (
     <div className="graph-viewer">
       {title && <div className="graph-title">{title}</div>}
-      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={graphLabel}>
         <rect width={width} height={height} fill="#0f0f1a" rx={8} />
         <clipPath id="plot-clip">
           <rect x={padding.left} y={padding.top} width={plotW} height={plotH} />
         </clipPath>
 
-        {/* Grid */}
-        {Array.from({ length: Math.ceil((xRange[1] - xRange[0]) / gridXStep) + 1 }, (_, i) => {
+        {Array.from({ length: Math.ceil(rangeX / gridXStep) + 1 }, (_, i) => {
           const x = Math.ceil(xRange[0] / gridXStep) * gridXStep + i * gridXStep;
           if (x < xRange[0] || x > xRange[1]) return null;
           const sx = toScreenX(x);
@@ -126,7 +162,7 @@ export function GraphViewer({
             <line key={`gx${x}`} x1={sx} y1={padding.top} x2={sx} y2={padding.top + plotH} stroke="#1e1e3a" strokeWidth={1} />
           );
         })}
-        {Array.from({ length: Math.ceil((yMax - yMin) / gridYStep) + 1 }, (_, i) => {
+        {Array.from({ length: Math.ceil(rangeY / gridYStep) + 1 }, (_, i) => {
           const y = Math.ceil(yMin / gridYStep) * gridYStep + i * gridYStep;
           if (y < yMin || y > yMax) return null;
           const sy = toScreenY(y);
@@ -135,7 +171,6 @@ export function GraphViewer({
           );
         })}
 
-        {/* Axes */}
         {x0 >= padding.left && x0 <= padding.left + plotW && (
           <line x1={x0} y1={padding.top} x2={x0} y2={padding.top + plotH} stroke="#4a4a6a" strokeWidth={1.5} />
         )}
@@ -143,39 +178,35 @@ export function GraphViewer({
           <line x1={padding.left} y1={y0} x2={padding.left + plotW} y2={y0} stroke="#4a4a6a" strokeWidth={1.5} />
         )}
 
-        {/* Axis labels */}
-        {Array.from({ length: Math.ceil((xRange[1] - xRange[0]) / gridXStep) + 1 }, (_, i) => {
+        {Array.from({ length: Math.ceil(rangeX / gridXStep) + 1 }, (_, i) => {
           const x = Math.ceil(xRange[0] / gridXStep) * gridXStep + i * gridXStep;
           if (x < xRange[0] || x > xRange[1]) return null;
           const sx = toScreenX(x);
           return (
             <text key={`lx${x}`} x={sx} y={height - 8} textAnchor="middle" fill="#6b7280" fontSize={11}>
-              {x}
+              {Number(x.toPrecision(3))}
             </text>
           );
         })}
-        {Array.from({ length: Math.ceil((yMax - yMin) / gridYStep) + 1 }, (_, i) => {
+        {Array.from({ length: Math.ceil(rangeY / gridYStep) + 1 }, (_, i) => {
           const y = Math.ceil(yMin / gridYStep) * gridYStep + i * gridYStep;
           if (y < yMin || y > yMax) return null;
           const sy = toScreenY(y);
           return (
             <text key={`ly${y}`} x={padding.left - 8} y={sy + 4} textAnchor="end" fill="#6b7280" fontSize={11}>
-              {y}
+              {Number(y.toPrecision(3))}
             </text>
           );
         })}
 
-        {/* X label */}
         <text x={width - 10} y={y0 + 4} textAnchor="end" fill="#6b7280" fontSize={13}>x</text>
         <text x={x0 + 4} y={padding.top + 2} textAnchor="start" fill="#6b7280" fontSize={13}>y</text>
 
-        {/* Functions */}
         <g clipPath="url(#plot-clip)">
           {fns?.map((f, i) => <g key={`fn${i}`}>{renderPath(f.fn, f.color)}</g>)}
           {fn && renderPath(fn, '#f59e0b')}
 
-          {/* Horizontal line */}
-          {showLine !== undefined && (
+          {showLine !== undefined && isFinite(showLine) && (
             <line
               x1={padding.left}
               y1={toScreenY(showLine)}
@@ -187,7 +218,6 @@ export function GraphViewer({
             />
           )}
 
-          {/* Holes */}
           {holes?.map((h, i) => {
             const sx = toScreenX(h.x);
             const sy = toScreenY(h.y);
@@ -200,20 +230,23 @@ export function GraphViewer({
           })}
         </g>
 
-        {/* Legend */}
         {fns && fns.length > 1 && (
           <g>
-            {fns.map((f, i) => (
-              <g key={`leg${i}`}>
-                <line x1={10} y1={height - 20 - i * 18} x2={26} y2={height - 20 - i * 18} stroke={f.color} strokeWidth={2} />
-                {f.label && (
-                  <text x={30} y={height - 16 - i * 18} fill="#c0c0d0" fontSize={12}>{f.label}</text>
-                )}
-              </g>
-            ))}
+            {fns.map((f, i) => {
+              const legX = padding.left + plotW - 110;
+              const legY = padding.top + 20 + i * 20;
+              return (
+                <g key={`leg${i}`}>
+                  <line x1={legX} y1={legY} x2={legX + 16} y2={legY} stroke={f.color} strokeWidth={2} />
+                  {f.label && (
+                    <text x={legX + 20} y={legY + 4} fill="#c0c0d0" fontSize={12}>{f.label}</text>
+                  )}
+                </g>
+              );
+            })}
           </g>
         )}
       </svg>
     </div>
   );
-}
+});
