@@ -1,0 +1,263 @@
+export interface StepOption {
+  text?: string;
+  graphFns?: { fn: (x: number) => number; color: string; label?: string }[];
+}
+
+export interface Step {
+  question: string;
+  options: StepOption[];
+  correctIndex: number;
+  explanation: string;
+}
+
+export interface Task22Example {
+  id: string;
+  title: string;
+  functionDesc: string;
+  functionHtml: string;
+  steps: Step[];
+  finalAnswer: string;
+}
+
+export const task22Examples: Task22Example[] = [
+  {
+    id: 'module-1',
+    title: 'Функция с модулем',
+    functionDesc: 'Постройте график функции y = |x|(x-1) - 3x и определите, при каких значениях p прямая y = p имеет с графиком функции ровно две общие точки.',
+    functionHtml: 'y = |x|(x-1) − 3x',
+    steps: [
+      {
+        question: 'Шаг 1: Раскройте модуль. Какая система верна?',
+        options: [
+          {
+            text: '{ x(x-1)-3x при x ≥ 0; -x(x-1)-3x при x < 0 }',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * (x - 1) - 3 * x : -x * (x - 1) - 3 * x, color: '#f59e0b' },
+            ],
+          },
+          {
+            text: '{ x(x-1)-3x при x ≥ 0; -x(x-1)+3x при x < 0 }',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * (x - 1) - 3 * x : -x * (x - 1) + 3 * x, color: '#ef4444' },
+            ],
+          },
+          {
+            text: '{ x(x-1)+3x при x ≥ 0; -x(x-1)-3x при x < 0 }',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * (x - 1) + 3 * x : -x * (x - 1) - 3 * x, color: '#3b82f6' },
+            ],
+          },
+        ],
+        correctIndex: 0,
+        explanation: 'При x ≥ 0: |x| = x, поэтому y = x(x-1) - 3x. При x < 0: |x| = -x, поэтому y = -x(x-1) - 3x.',
+      },
+      {
+        question: 'Шаг 2: Упростите выражение для каждой ветки. Какой вид правильный?',
+        options: [
+          {
+            text: '{ y = x² - 4x при x ≥ 0; y = -x² - 2x при x < 0 }',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * x - 4 * x : -(x * x) - 2 * x, color: '#f59e0b' },
+            ],
+          },
+          {
+            text: '{ y = x² - 2x при x ≥ 0; y = -x² - 4x при x < 0 }',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * x - 2 * x : -(x * x) - 4 * x, color: '#ef4444' },
+            ],
+          },
+          {
+            text: '{ y = x² - 4x при x ≥ 0; y = -x² + 2x при x < 0 }',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * x - 4 * x : -(x * x) + 2 * x, color: '#3b82f6' },
+            ],
+          },
+        ],
+        correctIndex: 0,
+        explanation: 'При x ≥ 0: x(x-1)-3x = x² - x - 3x = x² - 4x. При x < 0: -x(x-1)-3x = -x² + x - 3x = -x² - 2x.',
+      },
+      {
+        question: 'Шаг 3: Найдите вершины парабол и определите, какой график соответствует функции.',
+        options: [
+          {
+            text: 'График А',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * x - 4 * x : -(x * x) - 2 * x, color: '#f59e0b', label: 'y = x²-4x (x≥0)' },
+              { fn: (x) => x >= 0 ? x * x - 4 * x : -(x * x) - 2 * x, color: '#10b981', label: 'y = -x²-2x (x<0)' },
+            ],
+          },
+          {
+            text: 'График Б',
+            graphFns: [
+              { fn: (x) => x >= 0 ? -(x * x) + 4 * x : x * x + 2 * x, color: '#f59e0b', label: 'Неверные ветки' },
+            ],
+          },
+          {
+            text: 'График В',
+            graphFns: [
+              { fn: (x) => x >= 0 ? x * x + 4 * x : -(x * x) + 2 * x, color: '#ef4444', label: 'Неверные ветки' },
+            ],
+          },
+        ],
+        correctIndex: 0,
+        explanation: 'Вершина правой ветки (x²-4x): x₀ = 2, y₀ = -4. Вершина левой ветки (-x²-2x): x₀ = -1, y₀ = 1. При x=0 значение обеих веток совпадает: y=0.',
+      },
+      {
+        question: 'Шаг 4: При каких значениях p прямая y = p пересекает график ровно в двух точках?',
+        options: [
+          { text: 'p = -4', graphFns: [] },
+          { text: 'p = -1 и p = 4', graphFns: [] },
+          { text: 'p = -9 и p = 4', graphFns: [] },
+        ],
+        correctIndex: 1,
+        explanation: 'Прямая y = p пересекает график ровно в двух точках при p = -1 (проходит через вершину левой ветки) и при p = 4 (проходит через вершину правой ветки). Это значения p, при которых горизонтальная прямая касается одной из веток и пересекает другую.',
+      },
+    ],
+    finalAnswer: 'p = -1, p = 4',
+  },
+  {
+    id: 'piecewise-1',
+    title: 'Кусочно-заданная функция',
+    functionDesc: 'Постройте график функции y = { x²-6x+10 при x ≥ 1; x+2 при x < 1 } и определите, при каких значениях m прямая y = m имеет с графиком ровно две общие точки.',
+    functionHtml: 'y = { x²−6x+10, x ≥ 1; x+2, x < 1 }',
+    steps: [
+      {
+        question: 'Шаг 1: Какая ветка соответствует левой части графика (x < 1)?',
+        options: [
+          { text: 'y = x + 2 (прямая)', graphFns: [{ fn: (x) => x + 2, color: '#f59e0b' }] },
+          { text: 'y = x² - 6x + 10 (парабола)', graphFns: [{ fn: (x) => x * x - 6 * x + 10, color: '#ef4444' }] },
+          { text: 'y = -x + 2 (прямая)', graphFns: [{ fn: (x) => -x + 2, color: '#3b82f6' }] },
+        ],
+        correctIndex: 0,
+        explanation: 'При x < 1 функция задана как y = x + 2 — это линейная функция (прямая).',
+      },
+      {
+        question: 'Шаг 2: Найдите вершину параболы y = x² - 6x + 10 на правой ветке (x ≥ 1).',
+        options: [
+          { text: 'Вершина в точке (3; 1)' },
+          { text: 'Вершина в точке (3; -8)' },
+          { text: 'Вершина в точке (-3; 1)' },
+        ],
+        correctIndex: 0,
+        explanation: 'x₀ = -b/(2a) = 6/2 = 3. y₀ = 3² - 6·3 + 10 = 9 - 18 + 10 = 1. Вершина в точке (3; 1).',
+      },
+      {
+        question: 'Шаг 3: Выберите правильный график функции.',
+        options: [
+          {
+            text: 'График А',
+            graphFns: [
+              { fn: (x) => x < 1 ? x + 2 : x * x - 6 * x + 10, color: '#f59e0b', label: 'Кусочная функция' },
+              { fn: () => 1, color: '#ef4444', label: 'y = 1' },
+              { fn: () => 3, color: '#10b981', label: 'y = 3' },
+            ],
+          },
+          {
+            text: 'График Б',
+            graphFns: [
+              { fn: (x) => x < 1 ? -x + 2 : x * x - 6 * x + 10, color: '#ef4444' },
+            ],
+          },
+          {
+            text: 'График В',
+            graphFns: [
+              { fn: (x) => x < 1 ? x + 2 : -(x * x) + 6 * x - 10, color: '#3b82f6' },
+            ],
+          },
+        ],
+        correctIndex: 0,
+        explanation: 'Правильный график: прямая y = x+2 при x < 1, парабола y = x²-6x+10 при x ≥ 1. При x = 1: парабола даёт y = 5, прямая — y = 3, поэтому в точке x=1 функция принимает значение 5 (по условию x ≥ 1).',
+      },
+      {
+        question: 'Шаг 4: При каких m прямая y = m имеет ровно две общие точки с графиком?',
+        options: [
+          { text: 'm = 1 и m = 3', graphFns: [] },
+          { text: 'm = 0 и m = 5', graphFns: [] },
+          { text: 'm = 3 и m = 5', graphFns: [] },
+        ],
+        correctIndex: 0,
+        explanation: 'Прямая y = m пересекает график ровно в двух точках при m = 1 (через вершину параболы — касание + пересечение с прямой) и при m = 3 (пересекает обе ветки в двух точках).',
+      },
+    ],
+    finalAnswer: 'm = 1, m = 3',
+  },
+  {
+    id: 'rational-1',
+    title: 'Дробно-рациональная функция',
+    functionDesc: 'Постройте график функции y = (x-1)/(x²-x) и определите, при каких значениях k прямая y = kx имеет с графиком ровно одну общую точку.',
+    functionHtml: 'y = (x−1)/(x²−x)',
+    steps: [
+      {
+        question: 'Шаг 1: Упростите выражение. Какое преобразование верное?',
+        options: [
+          {
+            text: 'y = (x-1)/(x(x-1)) = 1/x, при x≠1',
+            graphFns: [
+              { fn: (x) => 1 / x, color: '#f59e0b' },
+            ],
+          },
+          {
+            text: 'y = (x-1)/(x(x-1)) = 1/(x-1), при x≠0',
+            graphFns: [
+              { fn: (x) => 1 / (x - 1), color: '#ef4444' },
+            ],
+          },
+          {
+            text: 'y = (x-1)/(x²-x) = 1 - 1/x',
+            graphFns: [
+              { fn: (x) => 1 - 1 / x, color: '#3b82f6' },
+            ],
+          },
+        ],
+        correctIndex: 0,
+        explanation: 'x² - x = x(x-1). Сокращаем (x-1): y = 1/x, но при условии x ≠ 1 (так как знаменатель был x(x-1), и при x = 1 он равен 0).',
+      },
+      {
+        question: 'Шаг 2: Найдите выколотую точку (где функция не определена, но выражение упрощается).',
+        options: [
+          { text: 'x = 0 (y → ±∞)', graphFns: [] },
+          { text: 'x = 1, y = 1', graphFns: [] },
+          { text: 'x = 0, y = 0', graphFns: [] },
+        ],
+        correctIndex: 1,
+        explanation: 'При x = 1 исходный знаменатель равен 0, но после сокращения мы получаем y = 1/1 = 1. Значит, точка (1; 1) — выколотая (не принадлежит графику, хотя график y = 1/x проходит через неё). А x = 0 — вертикальная асимптота.',
+      },
+      {
+        question: 'Шаг 3: Какой график соответствует функции y = 1/x с выколотой точкой (1; 1)?',
+        options: [
+          {
+            text: 'График А',
+            graphFns: [
+              { fn: (x) => 1 / x, color: '#f59e0b', label: 'y = 1/x' },
+            ],
+          },
+          {
+            text: 'График Б',
+            graphFns: [
+              { fn: (x) => -1 / x, color: '#ef4444' },
+            ],
+          },
+          {
+            text: 'График В',
+            graphFns: [
+              { fn: (x) => 1 / (x + 1), color: '#3b82f6' },
+            ],
+          },
+        ],
+        correctIndex: 0,
+        explanation: 'Это гипербола y = 1/x. Она имеет две ветви: в I и III четвертях. Выколотая точка (1; 1) находится на правой ветви.',
+      },
+      {
+        question: 'Шаг 4: При каком k прямая y = kx проходит через выколотую точку (1; 1) и пересекает график ровно в одной точке?',
+        options: [
+          { text: 'k = 0', graphFns: [] },
+          { text: 'k = 1', graphFns: [] },
+          { text: 'k = -1', graphFns: [] },
+        ],
+        correctIndex: 1,
+        explanation: 'Прямая y = kx должна пройти через выколотую точку (1; 1): 1 = k·1, значит k = 1. При k = 1 прямая y = x проходит через (1; 1), но так как эта точка выколота, прямая пересекает график ровно в одной точке (во второй точке пересечения — (1; 1) — её нет).',
+      },
+    ],
+    finalAnswer: 'k = 1',
+  },
+];

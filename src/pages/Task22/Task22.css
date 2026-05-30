@@ -1,0 +1,207 @@
+.task22-page {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task22-intro {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 28px;
+}
+
+.task22-intro h2 {
+  font-size: 20px;
+  color: #f59e0b;
+  margin: 0 0 12px;
+}
+
+.task22-intro p {
+  font-size: 15px;
+  color: #c0c0d0;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.task22-intro ol {
+  margin: 8px 0 0;
+  padding-left: 24px;
+}
+
+.task22-intro li {
+  font-size: 15px;
+  color: #c0c0d0;
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+.task22-intro li strong {
+  color: #ffffff;
+}
+
+.task22-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.task22-example-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.task22-example-card:hover {
+  border-color: #f59e0b;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.12);
+}
+
+.task22-example-header {
+  margin-bottom: 12px;
+}
+
+.task22-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.task22-example-formula {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.task22-example-desc {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.task22-example-action {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f59e0b;
+}
+
+/* Task in-progress */
+.task22-progress-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.task22-back {
+  background: none;
+  border: 1px solid #2a2a4a;
+  color: #a0a0b8;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.task22-back:hover {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+.task22-progress-dots {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.task22-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2a2a4a;
+  transition: all 0.2s;
+}
+
+.task22-dot.active {
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+}
+
+.task22-dot.done {
+  background: #10b981;
+}
+
+.task22-task {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.task22-task-formula {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px 0;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.task22-task-desc {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.task22-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.task22-final {
+  text-align: center;
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 36px;
+  width: 100%;
+}
+
+.task22-final h2 {
+  font-size: 22px;
+  color: #10b981;
+  margin: 0 0 12px;
+}
+
+.task22-final-answer {
+  font-size: 20px;
+  color: #f59e0b;
+  margin: 0 0 8px;
+}
+
+.task22-final-note {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}

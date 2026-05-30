@@ -1,0 +1,126 @@
+.step-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-header {
+  margin-bottom: 12px;
+}
+
+.step-number {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.step-question {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.step-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-option {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 2px solid #2a2a4a;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-items: flex-start;
+}
+
+.step-option:hover:not(.correct):not(.wrong) {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.step-option.selected {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.step-option.correct {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.step-option.wrong {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.step-option-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6b7280;
+  min-width: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-option.correct .step-option-label {
+  color: #10b981;
+}
+
+.step-option.wrong .step-option-label {
+  color: #ef4444;
+}
+
+.step-option-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.step-option-text {
+  font-size: 14px;
+  color: #c0c0d0;
+  line-height: 1.5;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.step-result {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.step-result.correct {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.step-result.wrong {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.step-explanation {
+  margin-top: 8px;
+  color: #c0c0d0;
+  font-weight: 400;
+}

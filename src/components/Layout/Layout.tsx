@@ -7,7 +7,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { to: '/', label: 'Главная' },
     { to: '/topics', label: 'Темы' },
-    { to: '/task6', label: '6 задание ОГЭ' },
+    { to: '/task6', label: '6 задание' },
+    { to: '/task22', label: '22 задание' },
     { to: '/docs', label: 'Теория' },
   ];
 
