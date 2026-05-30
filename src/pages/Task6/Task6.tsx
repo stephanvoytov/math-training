@@ -194,7 +194,7 @@ export function Task6() {
           <button
             type="button"
             className="btn-primary"
-            onClick={() => generate()}
+            onClick={() => generate(count, selectedSubtypes)}
           >
             Начать тренировку
           </button>
@@ -258,7 +258,7 @@ export function Task6() {
             {maxStreak > 1 && <p className="done-streak">🔥 Лучшая серия: {maxStreak} подряд</p>}
             <p className="done-time">⏱ Время: {Math.floor(total > 0 ? (Date.now() - startTimeRef.current) / 60000 : 0)} мин</p>
             <div className="done-actions">
-              <button type="button" className="btn-primary" onClick={() => { saveCount(count); generate(); }}>
+              <button type="button" className="btn-primary" onClick={() => { saveCount(count); generate(count, selectedSubtypes); }}>
                 Начать заново
               </button>
               {Object.values(results).filter((v) => !v).length > 0 && (
