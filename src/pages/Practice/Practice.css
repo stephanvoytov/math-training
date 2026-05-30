@@ -1,0 +1,59 @@
+.practice-page {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+
+.practice-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #f59e0b, #e85d04);
+  border: none;
+  border-radius: 12px;
+  color: #0f0f1a;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.practice-done {
+  text-align: center;
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.practice-done h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+
+.practice-done p {
+  font-size: 18px;
+  color: #f59e0b;
+  margin: 0 0 24px;
+}
