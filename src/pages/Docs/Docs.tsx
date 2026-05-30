@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { theoryData } from '../../data/theory';
+import { Task22Theory } from '../Task22Theory/Task22Theory';
 import './Docs.css';
 
 export function Docs() {
@@ -35,10 +36,14 @@ export function Docs() {
 
       {theoryData.map((section) => (
         <div key={section.key} className="docs-section" data-theory={section.key}>
-          <div
-            className="docs-content"
-            dangerouslySetInnerHTML={{ __html: section.content }}
-          />
+          {section.key === 'task22' ? (
+            <Task22Theory />
+          ) : (
+            <div
+              className="docs-content"
+              dangerouslySetInnerHTML={{ __html: section.content }}
+            />
+          )}
         </div>
       ))}
     </div>

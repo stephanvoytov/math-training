@@ -1,0 +1,137 @@
+.interactive-demo {
+  background: #12122a;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.demo-header {
+  margin-bottom: 16px;
+}
+
+.demo-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f59e0b;
+  margin: 0 0 6px;
+}
+
+.demo-formula {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.demo-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+@media (max-width: 700px) {
+  .demo-body {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.demo-graph {
+  flex-shrink: 0;
+}
+
+.demo-controls {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.demo-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.demo-slider-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #a0a0b8;
+  min-width: 20px;
+  text-align: right;
+}
+
+.demo-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #2a2a4a;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.demo-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b, #e85d04);
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s;
+}
+
+.demo-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.demo-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b, #e85d04);
+  cursor: pointer;
+  border: none;
+}
+
+.demo-slider-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e0e0e0;
+  min-width: 36px;
+  text-align: right;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.demo-info {
+  font-size: 13px;
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.demo-reset {
+  background: none;
+  border: 1px solid #2a2a4a;
+  color: #a0a0b8;
+  padding: 5px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.demo-reset:hover {
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
