@@ -1,13 +1,5 @@
 import { randInt } from '../mathUtils';
-
-export interface Example {
-  id: string;
-  topic: string;
-  question: string;
-  answer: number;
-  options?: number[];
-  theoryKey: string;
-}
+import type { Example } from './types';
 
 function powerStr(base: number, exp: number): string {
   if (exp === 1) return String(base);
@@ -58,19 +50,11 @@ export function generatePowersExamples(count: number = 10): Example[] {
       }
     }
 
-    const wrongs = new Set<number>();
-    while (wrongs.size < 3) {
-      const w = answer + randInt(-5, 5);
-      if (w !== answer && w > 0) wrongs.add(w);
-    }
-    const options = [answer, ...wrongs].sort(() => Math.random() - 0.5);
-
     examples.push({
       id: `pow-${Date.now()}-${i}`,
       topic: 'Степени',
       question,
       answer,
-      options,
       theoryKey: 'powers',
     });
   }

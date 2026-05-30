@@ -1,13 +1,5 @@
 import { randInt } from '../mathUtils';
-
-export interface Example {
-  id: string;
-  topic: string;
-  question: string;
-  answer: number;
-  options?: number[];
-  theoryKey: string;
-}
+import type { Example } from './types';
 
 function fmtPower(base: number, exp: number): string {
   const bStr = base < 0 ? `(${base})` : String(base);
@@ -74,21 +66,11 @@ export function generateTask6Examples(count: number = 10): Example[] {
 
     answer = Math.round(answer * 1000) / 1000;
 
-    const wrongs = new Set<number>();
-    while (wrongs.size < 3) {
-      const offset = randInt(1, 10);
-      const sign = Math.random() < 0.5 ? 1 : -1;
-      const w = Math.round((answer + sign * offset) * 1000) / 1000;
-      if (w !== answer && !isNaN(w)) wrongs.add(w);
-    }
-    const options = [answer, ...wrongs].sort(() => Math.random() - 0.5);
-
     examples.push({
       id: `task6-${Date.now()}-${i}`,
       topic: '6 задание ОГЭ',
       question,
       answer,
-      options,
       theoryKey: 'task6',
     });
   }

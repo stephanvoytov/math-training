@@ -3,6 +3,5 @@ export interface Example {
   topic: string;
   question: string;
   answer: number;
-  options?: number[];
   theoryKey: string;
 }

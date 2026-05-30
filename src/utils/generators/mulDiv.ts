@@ -1,13 +1,5 @@
 import { randInt } from '../mathUtils';
-
-export interface Example {
-  id: string;
-  topic: string;
-  question: string;
-  answer: number;
-  options?: number[];
-  theoryKey: string;
-}
+import type { Example } from './types';
 
 export function generateMulDivExamples(count: number = 10): Example[] {
   const examples: Example[] = [];
@@ -26,19 +18,11 @@ export function generateMulDivExamples(count: number = 10): Example[] {
       op = '÷';
     }
 
-    const wrongs = new Set<number>();
-    while (wrongs.size < 3) {
-      const w = answer + randInt(-10, 10);
-      if (w !== answer && w > 0) wrongs.add(w);
-    }
-    const options = [answer, ...wrongs].sort(() => Math.random() - 0.5);
-
     examples.push({
       id: `muldiv-${Date.now()}-${i}`,
       topic: 'Умножение и деление',
       question: `${a} ${op} ${b}`,
       answer,
-      options,
       theoryKey: 'muldiv',
     });
   }
