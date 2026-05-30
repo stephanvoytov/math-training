@@ -135,3 +135,27 @@
   border-color: #f59e0b;
   color: #f59e0b;
 }
+
+@media (max-width: 480px) {
+  .interactive-demo {
+    padding: 14px 16px;
+  }
+
+  .demo-body {
+    gap: 16px;
+  }
+
+  .demo-controls {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .demo-slider-row {
+    gap: 6px;
+  }
+
+  .demo-slider-value {
+    min-width: 30px;
+    font-size: 13px;
+  }
+}

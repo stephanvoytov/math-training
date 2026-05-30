@@ -146,3 +146,32 @@
   color: #f59e0b;
   font-weight: 600;
 }
+
+@media (max-width: 480px) {
+  .theory-h2 {
+    font-size: 20px;
+  }
+
+  .theory-h3 {
+    font-size: 16px;
+  }
+
+  .theory-p,
+  .theory-ol li,
+  .theory-ul li {
+    font-size: 14px;
+  }
+
+  .theory-example {
+    padding: 14px 16px;
+  }
+
+  .theory-table {
+    font-size: 11px;
+  }
+
+  .theory-table th,
+  .theory-table td {
+    padding: 3px 6px;
+  }
+}

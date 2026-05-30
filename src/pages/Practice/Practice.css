@@ -52,3 +52,22 @@
   color: #f59e0b;
   margin: 0 0 24px;
 }
+
+@media (max-width: 480px) {
+  .practice-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .practice-done {
+    padding: 24px 16px;
+  }
+
+  .practice-done h2 {
+    font-size: 20px;
+  }
+
+  .practice-done p {
+    font-size: 16px;
+  }
+}

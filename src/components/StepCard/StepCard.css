@@ -119,3 +119,21 @@
   color: #c0c0d0;
   font-weight: 400;
 }
+
+@media (max-width: 480px) {
+  .step-card {
+    padding: 16px;
+  }
+
+  .step-question {
+    font-size: 14px;
+  }
+
+  .step-option {
+    padding: 10px 14px;
+  }
+
+  .step-option-text {
+    font-size: 13px;
+  }
+}

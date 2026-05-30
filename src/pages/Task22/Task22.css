@@ -200,3 +200,48 @@
   line-height: 1.5;
   margin: 0 0 24px;
 }
+
+@media (max-width: 480px) {
+  .task22-intro {
+    padding: 16px 18px;
+  }
+
+  .task22-intro h2 {
+    font-size: 18px;
+  }
+
+  .task22-intro p,
+  .task22-intro li {
+    font-size: 14px;
+  }
+
+  .task22-examples {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .task22-example-card {
+    padding: 18px;
+  }
+
+  .task22-progress-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .task22-task {
+    padding: 16px 18px;
+  }
+
+  .task22-task-formula {
+    font-size: 19px;
+  }
+
+  .task22-final {
+    padding: 20px;
+  }
+
+  .task22-final h2 {
+    font-size: 19px;
+  }
+}

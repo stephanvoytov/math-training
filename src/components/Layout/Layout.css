@@ -87,3 +87,35 @@
   font-size: 14px;
   border-top: 1px solid #2a2a4a;
 }
+
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 0 12px;
+    height: 56px;
+  }
+
+  .logo-text {
+    font-size: 17px;
+  }
+
+  .nav {
+    overflow-x: auto;
+    gap: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .main {
+    padding: 20px 12px;
+  }
+}

@@ -103,3 +103,31 @@
   opacity: 0.9;
   transform: translateY(-2px);
 }
+
+@media (max-width: 480px) {
+  .hero {
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .topics-grid {
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .topic-card {
+    padding: 20px;
+  }
+
+  .quick-link {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}

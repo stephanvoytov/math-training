@@ -119,3 +119,35 @@
 .theory-link:hover {
   background: rgba(245, 158, 11, 0.1);
 }
+
+@media (max-width: 480px) {
+  .example-card {
+    padding: 16px;
+  }
+
+  .example-question {
+    font-size: 22px;
+  }
+
+  .example-question sup {
+    font-size: 14px;
+  }
+
+  .example-input-area {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .answer-input {
+    max-width: 100%;
+    font-size: 18px;
+  }
+
+  .check-btn {
+    text-align: center;
+  }
+
+  .example-result {
+    font-size: 16px;
+  }
+}
