@@ -160,6 +160,53 @@ export function Task22Theory() {
         <li><strong>Найти значения параметра</strong>, при которых прямая пересекает график в нужном количестве точек</li>
       </ol>
 
+      <h3 className="theory-h3">Как точно построить график от руки</h3>
+      <p className="theory-p">
+        На ОГЭ график нужно строить по точкам — карандашом на координатной сетке. 
+        Для каждого типа функций — свой способ найти нужные точки.
+      </p>
+
+      <div className="theory-points">
+        <div className="points-card">
+          <h4>Парабола y = ax² + bx + c</h4>
+          <ol className="theory-ol">
+            <li><strong>Вершина:</strong> x₀ = −b/(2a), y₀ = a·x₀² + b·x₀ + c</li>
+            <li><strong>Таблица:</strong> берём 2–3 целых x слева и справа от x₀, вычисляем y</li>
+            <li><strong>Симметрия:</strong> точки на одинаковом расстоянии от вершины имеют одинаковый y</li>
+          </ol>
+          <div className="theory-table-wrap">
+            <table className="theory-table">
+              <thead><tr><th>x</th><th>x₀−2</th><th>x₀−1</th><th>x₀</th><th>x₀+1</th><th>x₀+2</th></tr></thead>
+              <tbody><tr><th>y</th><td>...</td><td>...</td><td>y₀</td><td>...</td><td>...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="points-card">
+          <h4>Гипербола y = k/x</h4>
+          <ol className="theory-ol">
+            <li><strong>Асимптоты:</strong> x = 0, y = 0</li>
+            <li><strong>Таблица:</strong> по 3–4 точки с каждой стороны от x = 0</li>
+            <li><strong>Шаг:</strong> чем ближе к 0, тем чаще берите точки (0.5, 1, 2, 3)</li>
+          </ol>
+          <div className="theory-table-wrap">
+            <table className="theory-table">
+              <thead><tr><th>x</th><td>−3</td><td>−2</td><td>−1</td><td>−0.5</td><td>0.5</td><td>1</td><td>2</td><td>3</td></tr></thead>
+              <tbody><tr><th>y</th><td>−k/3</td><td>−k/2</td><td>−k</td><td>−2k</td><td>2k</td><td>k</td><td>k/2</td><td>k/3</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="points-card">
+          <h4>Модуль и кусочные</h4>
+          <ol className="theory-ol">
+            <li><strong>Точка излома:</strong> где модуль равен 0 или граница интервала</li>
+            <li><strong>Значение на границе:</strong> вычислить для каждой ветви</li>
+            <li><strong>Доп. точки:</strong> по 2 точки на каждую ветвь</li>
+          </ol>
+        </div>
+      </div>
+
       <h3 className="theory-h3">Примеры решений</h3>
 
       <div className="theory-example">

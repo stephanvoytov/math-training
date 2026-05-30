@@ -90,3 +90,59 @@
   color: #f59e0b;
   font-weight: 600;
 }
+
+.theory-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.points-card {
+  background: #12122a;
+  border: 1px solid #2a2a4a;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.points-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f59e0b;
+  margin: 0 0 8px;
+}
+
+.points-card .theory-ol {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.points-card .theory-ol li {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.theory-table-wrap {
+  overflow-x: auto;
+}
+
+.theory-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.theory-table th,
+.theory-table td {
+  padding: 4px 8px;
+  text-align: center;
+  border: 1px solid #2a2a4a;
+  color: #c0c0d0;
+}
+
+.theory-table th {
+  background: #1a1a2e;
+  color: #f59e0b;
+  font-weight: 600;
+}
