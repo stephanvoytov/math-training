@@ -9,12 +9,8 @@
       (function() {
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
-        if (redirect && redirect !== location.pathname + location.search) {
-          var base = '/math-training';
-          var target = base + redirect;
-          if (location.pathname !== target) {
-            history.replaceState(null, '', target);
-          }
+        if (redirect && redirect !== location.pathname + location.search + location.hash) {
+          history.replaceState(null, '', redirect);
         }
       })();
     </script>

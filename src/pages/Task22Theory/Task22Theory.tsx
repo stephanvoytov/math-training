@@ -63,7 +63,7 @@ export function Task22Theory() {
         }}
         xRange={[-6, 6]}
         yRange={[-8, 12]}
-        height={470}
+        height={400}
       />
 
       <InteractiveDemo
