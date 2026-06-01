@@ -1,4 +1,6 @@
 # Математика ОГЭ — тренажер
+[![React](https://img.shields.io/badge/React-20232A?logo=react)](https://react.dev/) [![Stars](https://img.shields.io/github/stars/stephanvoytov/math-training)](https://github.com/stephanvoytov/math-training/stargazers)
+
 
 Интерактивный тренажер для подготовки к ОГЭ по математике. Построен на React + TypeScript с адаптивным дизайном и мгновенной обратной связью.
 
